@@ -14,6 +14,13 @@ export function main() {
     conta.depositar(5000);
     conta.visualizar();
 
+    const conta2: Conta = new Conta(2, 234, 2, "Juliano", 20000);
+    conta2.visualizar();
+    conta2.sacar(10000);
+    conta2.visualizar();
+    conta2.depositar(8000);
+    conta2.visualizar();
+
     while (true) {
 
         console.log(colors.bg.black, colors.fg.yellow, 
