@@ -1,9 +1,19 @@
+/**
+ * Autora: Beatriz Braga Silva
+ * Data: 11/03
+ */
+
+//importaçòes
 import readlinesync = require("readline-sync");
 import { colors } from './src/util/Colors';
 import { Conta } from './src/model/Conta';
+import { ContaCorrente } from './src/model/ContaCorrente';
+import { ContaPoupanca } from './src/model/ContaPoupanca';
 
+//função principal
 export function main() {
 
+    //variaveis e constantes
     let opcao: number;
 
     // Objeto da Classe Conta (Teste)
@@ -14,17 +24,26 @@ export function main() {
     conta.depositar(5000);
     conta.visualizar();
 
-    const conta2: Conta = new Conta(2, 234, 2, "Juliano", 20000);
-    conta2.visualizar();
-    conta2.sacar(10000);
-    conta2.visualizar();
-    conta2.depositar(8000);
-    conta2.visualizar();
+   // Objeto da Classe ContaCorrente (Teste)
+    const contacorrente: ContaCorrente = new ContaCorrente(2, 123, 1, "Mariana", 15000, 1000);
+    contacorrente.visualizar();
+    contacorrente.sacar(2000);
+    contacorrente.visualizar();
+    contacorrente.depositar(1000);
+    contacorrente.visualizar();
+
+    // Objeto da Classe ContaPoupanca (teste)
+    const contapoupanca: ContaPoupanca = new ContaPoupanca(3, 123, 2, "Victor", 1000, 10);
+    contapoupanca.visualizar();
+    contapoupanca.sacar(200);
+    contapoupanca.visualizar();
+    contapoupanca.depositar(1000);
+    contapoupanca.visualizar();
 
     while (true) {
 
         console.log(colors.bg.black, colors.fg.yellow, 
-                    "*****************************************************");
+                    "\n*****************************************************");
         console.log("                                                     ");
         console.log("                BANCO DO BRAZIL COM Z                ");
         console.log("                                                     ");
