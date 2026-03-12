@@ -1,4 +1,4 @@
-export class Conta {
+export abstract class Conta {
 
     //atributos
     private _numero: number;
@@ -52,12 +52,10 @@ export class Conta {
 
     //metodo sacar
     public sacar(valor: number): boolean {
-
         if (this._saldo < valor) {
             console.log("\n Saldo Insuficiente!");
             return false;
         }
-
         this._saldo = this._saldo - valor;
         return true;
     }
@@ -69,9 +67,7 @@ export class Conta {
 
     //metodo visualizar
     public visualizar(): void {
-
         let tipo: string = "";
-
         switch (this._tipo) {
             case 1:
                 tipo = "Conta Corrente";
@@ -91,5 +87,4 @@ export class Conta {
         console.log("Saldo: " + this._saldo.toFixed(2));
 
     }
-
 }
