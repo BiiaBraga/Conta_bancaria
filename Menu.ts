@@ -21,7 +21,7 @@ export function main() {
     //Instancia da Coasse ContasController
     let contas: ContaController = new ContaController();
 
-   // Objeto da Classe ContaCorrente (Teste)
+    //Objeto da Classe ContaCorrente (Teste)
     const contacorrente: ContaCorrente = new ContaCorrente(2, 123, 1, "Mariana", 15000, 1000);
     contacorrente.visualizar();
     contacorrente.sacar(2000);
@@ -89,7 +89,7 @@ export function main() {
                 let cp2: ContaPoupanca = new ContaPoupanca(contas.gerarNumero(), 125, 2, "Juliana Ramos", 8000, 15);
                 contas.cadastrar(cp2);
 
-                contas.listarTodas();
+                //contas.listarTodas();
 
                 //código oficial
                 // console.log("Digite o numero da agencia: ");
@@ -115,7 +115,7 @@ export function main() {
                 //         aniversario = readlinesync.questionFloat("");
                 //         contas.cadastrar(new ContaPoupanca(contas.gerarNumero(), agencia, tipo, titular, saldo, aniversario)); 
                 //         break;
-                // }
+                // } 
 
                 keyPress()
                 break;
@@ -126,17 +126,55 @@ export function main() {
                 break;
             case 3:
                 console.log(colors.fg.whitestrong, "\n\nConsultar dados da Conta - por número\n\n", colors.reset);
-
+                console.log("Digite o numero da Conta: ");
+                numero = readlinesync.questionInt("");
+                contas.procurarPorNumero(numero);
                 keyPress()
                 break;
             case 4:
                 console.log(colors.fg.whitestrong, "\n\nAtualizar dados da Conta\n\n", colors.reset);
+                
+                console.log("Digite o numero da conta: ")
+                numero = readlinesync.questionInt("")
+
+                let conta = contas.buscarNoArray(numero);
+
+                if (conta != null){
+                    
+                    console.log("Digite o numero da agencia: ");
+                    agencia = readlinesync.questionInt("");
+
+                    console.log("Digite o nome do titular da conta: ");
+                    titular = readlinesync.question("");
+
+                    tipo = conta.tipo;
+
+                    console.log("Digite o saldo da conta (R$): ");
+                    saldo = readlinesync.questionFloat("");
+
+                    switch (tipo) {
+                        case 1:
+                            console.log("Digite o limite da conta (R$): ");
+                            limite = readlinesync.questionFloat("");
+                            contas.atualizar( new ContaCorrente(numero, agencia, tipo, titular, saldo, limite));
+                            break;
+                        case 2:
+                            console.log("Digite o dia do aniversatio da conta poupança: : ");
+                            aniversario = readlinesync.questionInt("");
+                            contas.atualizar( new ContaPoupanca(numero, agencia, tipo, titular, saldo, aniversario));
+                            break;
+                        }
+                } else {
+                    console.log(colors.fg.red, "\nA conta numero" + numero + "nao foi encontrada!", colors.reset);
+                }
 
                 keyPress()
                 break;
             case 5:
                 console.log(colors.fg.whitestrong, "\n\nApagar uma Conta\n\n", colors.reset);
-
+                console.log("Digite o numero da conta: ");
+                numero = readlinesync.questionInt("");
+                contas.deletar(numero);
                 keyPress()
                 break;
             case 6:
